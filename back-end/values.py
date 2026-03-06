@@ -1,7 +1,8 @@
 from enum import Enum
 
+
 class Values(Enum):
-    ACE = 1
+    ACE = 1  # Where do we plan on handling when ace = 14?
     TWO = 2
     THREE = 3
     FOUR = 4

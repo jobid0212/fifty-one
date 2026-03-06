@@ -1,10 +1,14 @@
 from suits import Suits
 from values import Values
 
-def initialize_card(suit: Suits, value: Values) -> dict:
-    card = {
-        "suit" : suit,
-        "value" : value
-    }
-    return card
 
+class Card:
+    def __init__(self, suit: Suits, value: Values):
+        self.suit = suit
+        self.value = value
+
+    def __str__(self):
+        if self.suit == Suits.JOKER:
+            return "Joker"
+        else:
+            return f"{self.value.name.lower()} of {self.suit.name.lower()}"
