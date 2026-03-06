@@ -33,8 +33,3 @@ class Deck:
 
     def shuffle_deck(self) -> None:
         random.shuffle(self.deck)
-
-
-a = Deck(2)
-a.shuffle_deck()
-print(a)
