@@ -6,22 +6,12 @@ from values import Values
 
 
 class Deck:
-    def __init__(self, size: int) -> None:
-        """
-        Initializes a deck of cards based on size. size 1 = 52 cards. size 2 = 104 cards
-        """
-        deck = []
+    """
+    Functionality for the main decks (draw pile and played cards).
+    """
 
-        for suit in Suits:
-            if suit != Suits.JOKER:
-                for value in Values:
-                    for i in range(0, size):
-                        deck.append(Card(suit, value))
-
-        for i in range(0, size):
-            deck.append(Card(Suits.JOKER, Values.ACE))
-
-        self.deck = deck
+    def __init__(self) -> None:
+        self.deck = []
 
     def __str__(self) -> str:
         cards = ""
@@ -31,5 +21,27 @@ class Deck:
 
         return cards
 
+    def make_full_deck(self) -> None:
+        """
+        Creates a base deck with all 106 cards (includes 2 jokers).
+        """
+
+        for i in range(2):
+            self.deck.append(Card(Suits.JOKER, Values.ACE))
+
+            for suit in Suits:
+                if suit != Suits.JOKER:
+                    for value in Values:
+                        self.deck.append(Card(suit, value))
+
     def shuffle_deck(self) -> None:
         random.shuffle(self.deck)
+
+    def remove_card(self) -> Card:
+        try:
+            return self.deck.pop()
+        except IndexError:
+            raise IndexError("No cards to remove")
+
+    def add_card(self, card: Card) -> None:
+        self.deck.append(card)

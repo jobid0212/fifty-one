@@ -3,11 +3,11 @@ from values import Values
 
 
 class Card:
-    def __init__(self, suit: Suits, value: Values):
+    def __init__(self, suit: Suits, value: Values) -> None:
         self.suit = suit
         self.value = value
 
-    def __str__(self):
+    def __str__(self) -> str:
         if self.suit == Suits.JOKER:
             return "Joker"
         else:
