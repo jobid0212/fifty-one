@@ -29,15 +29,16 @@ def main() -> None:
     rand_idx = random.randrange(0, num_players)
     prev_winner = players[rand_idx]
 
-    playing = True
-    while playing:
+    g = Game(players, prev_winner)
+    prev_winner = g.play()  # returns None if not playing again
+    while prev_winner:
         g = Game(players, prev_winner)
-        prev_winner = g.play()  # returns None if not playing again
+        prev_winner = g.play()
         if prev_winner:
             continue
         break
 
-    print("Game successfully ended.")
+    print("Game ended.")
 
 
 if __name__ == "__main__":
