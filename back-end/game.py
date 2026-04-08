@@ -68,7 +68,7 @@ class Game:
         winner = self.players[0]  # PLACEHOLDER
 
         winner.prev_winner = True
-        print(f"{winner} has won the game. Congratulations!")
+        print(f"{winner.name} has won the game. Congratulations!")
 
         replay = self.query_for_replay()
         if replay:
