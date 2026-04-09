@@ -1,5 +1,6 @@
 from card import Card
 from deck import Deck
+from meld import Meld
 from player import Player
 from suits import Suits
 from values import Values
@@ -21,6 +22,7 @@ class Game:
         self.players = players
         self.last_discarded = Card(Suits.SPADES, Values.ACE)
         self.top_of_play_deck = self.play_deck.deck[-1]
+        self.melds: list[Meld] = []
 
     def deal_cards(self) -> None:  # Maybe change logic in case we want an animation?
         for player in self.players:
@@ -62,6 +64,16 @@ class Game:
                 continue
 
         return False
+
+    def print_board(self) -> None:
+        pass
+
+    def take_turn(self, player: Player) -> None:
+        playable_cards = {}
+        if player.opened:
+            for meld in self.melds:
+                temp_playable = meld.playable_cards
+                playable_cards[meld] = temp_playable
 
     def play(self) -> Player | None:
         """Contains the logic for the game loop. Returns the winner of the game or None if the user doesn't want to play again."""
