@@ -1,5 +1,8 @@
+from card import Card
 from deck import Deck
 from player import Player
+from suits import Suits
+from values import Values
 
 
 class Game:
@@ -7,7 +10,6 @@ class Game:
         if len(players) > 7 or len(players) < 2:
             raise ValueError("Invalid player count.")
 
-        self.players = players
         self.current_player = previous_winner  # Take prev winner as a param and init it to be the first `current_player`
 
         self.play_deck = Deck()
@@ -15,6 +17,10 @@ class Game:
         self.play_deck.shuffle_deck()
 
         self.discard_pile = Deck()
+
+        self.players = players
+        self.last_discarded = Card(Suits.SPADES, Values.ACE)
+        self.top_of_play_deck = self.play_deck.deck[-1]
 
     def deal_cards(self) -> None:  # Maybe change logic in case we want an animation?
         for player in self.players:
@@ -61,6 +67,10 @@ class Game:
         """Contains the logic for the game loop. Returns the winner of the game or None if the user doesn't want to play again."""
 
         self.deal_cards()
+
+        # self.take_first_turn(self.current_player)
+        #
+        # self.take_turn()
 
         for player in self.players:
             print(player)
